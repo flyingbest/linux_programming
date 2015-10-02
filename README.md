@@ -147,9 +147,25 @@ list0333A.c	list0333B.c	list0333C.c 를 진행하면서
 
 헤더 파일을 보기만 해도 라이브러리의 사용법을 제대로 알 수 있음. 물론 각각의 API를 어떻게 사용하면 좋을지는 라이브러리에 첨부된 문서를 읽어야 함.
 
+- G_BEGIN_DECLS란?
+
+gstring.h 에서 사용되는 G_BEGIN_DECLS는 무엇을 정의?? /usr/include/glib-2.0/glib/gmacros.h에 다음처럼 정의.
+
 ```
-G_BEGIN_DECLS란?
+/* Guard C code in headers, while including them from C++ */
+#ifdef	__cplusplus
+# define G_BEGIN_DECLS	extern "C" {
+# define G_END_DECLS	}
+#else
+# define G_BEGIN_DECLS
+# define G_END_DECLS
+#endif
+```
 
-gstring.h 에서 사용되는 G_BEGIN_DECLS는 무엇을 정의??
+이 정의는 C 프로그래밍에서는 의미가 없음. 즉 __cplusplus가 정의되어 있지 않으면 공백으로 변환되어 버림.
 
+이 코드는 라이브러리화했을 때 의미가 있음. C++ 에서 이용할 때는 이 매크로에 의미가 생김.
+C++에서 C언어 코드를 이용할 때는 extern "C" {...}로 에워싸 C언어 함수임을 명시해야 함.
+하지만 C언어에서는 불필요. 코드를 이용하는 언어에 따라 똑똑하게 전환하는 구조가 G_BEGIN_DECLS ... G_END_DECLS 임.
 
+- 구조체의 확인
