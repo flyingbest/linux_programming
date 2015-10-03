@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431A.c
+stdio.h
+-
+
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431A.h
+
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431B.c
+stdio.h
+-
+
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431B.h
+
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431main.c
+list0431A.h
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431A.h
+list0431B.h
+/home/ansxodbs/linux_server/linux_programming/CMake/list0431B.h
+
