@@ -1,4 +1,4 @@
-list0311:	list0311A.o	list0311B.o
+st0311:	list0311A.o	list0311B.o
 	gcc list0311A.o	list0311B.o -o list0311
 
 list0311A.o:	list0311A.c
