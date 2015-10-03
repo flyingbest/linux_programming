@@ -222,4 +222,47 @@ $ cat /usr/include/libio.h | less
 ...
 ```
 
-\#if defined(WIN)는 \#ifdef 디렉티브를 사용해 \#ifdef WIN32라고 하기도 함. 윈도우 용 코드를 에워사는 데는 WIN32나 __WIN32__ 등의 심볼이 자주 사용.
+\#if defined(WIN)는 \#ifdef 디렉티브를 사용해 \#ifdef WIN32라고 하기도 함. 윈도우 용 코드를 에워사는 데는 WIN32나\_\_WIN32\_\_ 등의 심볼이 자주 사용.
+
+- 시스템에서 정의되는 매크로
+
+```
+$ echo | cpp -dM | less
+```
+
+로 표준입력을 더미로 사용하면 gcc 매뉴얼에 따라 사전 정의된 매크로(predefined macros) 목록을 볼 수 있음.
+
+- 이식성을 높이는 설계
+
+대다수 CPU architecture 를 지원하는 소프트웨어라면 리눅스 운영체제 자체를 빼놓을 수 없음.
+플랫폼에 의존적인 부분을 가능한 한 분리해 설계하는 것이 소프트웨어의 이식성을 높이는 요령.
+
+> Autotoolset
+
+단순한 파일 구성이라면 몰라도 파일 수가 많아지면 Makefile을 기술하기 번거로움. 그래서 이식성을 확보하는 도구로 Autotoolset 사용.
+
+- 반자동 빌드 과정
+
+Autotoolset에 따른 절차의 특징은 configure 스크립트라고 불리는 스크립트가 소프트웨어를 구축하는 환경의 정보를 자동으로 수집하고 그 결과를 이용해 환경에 맞는 Makefile을 자동으로 만들어준다는 점. 이전에는 GNU Autotools라 불림.
+
+> configure 스크립트
+
+> Autotoolset을 이용한 개발 준비
+
+list0432.c 를 작성하고 Makefile.am	configure.in(추후에 configure.ac로 수정하라고 warning 뜸) 작성.
+그리고 aclocal, autoconf, automake 순서로 명령 실행.
+
+automake 실행 시에 다양한 오류 메시지가 출력됨. 오류를 억제하려면 '-a' 옵션 사용. 이 옵션은 없는 파일을 자동으로 추가.
+단, 패키지 제작자의 정보를 기재하는 AUTHORS, 프로그램 수정 이력을 기록하는 ChangeLog, 패키지에 관한 신착 정보를 기재하는 NEWS, 패키지에 관한 기본적인 정보를 기재하는 README 네가지는 -a 옵션을 사용해도 자동으로 만들어 주지 않음.
+
+```
+$ touch AUTHORS ChangeLog NEWS README
+```
+
+위처럼 빈 파일을 만들어 다시 automake 실행.		./configure 를 입력해 스크립트를 실행하고 Makefile이 작성됬는지 확인.
+
+> CMake의 활용
+
+- 다시보는 분할 컴파일
+
+CMake의 설정 파일은 CMakeLists.txt . 
