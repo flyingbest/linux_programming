@@ -265,4 +265,13 @@ $ touch AUTHORS ChangeLog NEWS README
 
 - 다시보는 분할 컴파일
 
-CMake의 설정 파일은 CMakeLists.txt . 
+CMake의 설정 파일은 CMakeLists.txt . CMakeLists.txt 의 두번재 줄은 프로젝트를 정의하는 내용.
+add_executable()은 실행 파일과 그 소스 파일을 가리킴. 여기서는 실행 파일이 list0431이며, 그 소스파일은 list0431main.c, list0431A.c, list0431B.c를 가리킴.
+
+	1. cmake 명령으로 Makefile을 작성
+	2. make 명령으로 실행 형식을 빌드
+
+cmake의 옵션을 지정하면 일반적인 Makefile이 아니라, 통합 개발 환경용 프로젝트 파일도 작성가능.	1. cmake 명령으로 Makefile을 작성
+	2. make 명령으로 실행 형식을 빌드
+
+cmake의 옵션을 지정하면 일반적인 Makefile이 아니라, 통합 개발 환경용 프로젝트 파일도 작성가능.	
