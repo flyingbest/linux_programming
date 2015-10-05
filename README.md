@@ -492,4 +492,37 @@ $
 
 ### 옵션 해석
 
+> 프로그램에 전달하는 파라미터
+
+터미널 에뮬레이터나 CUI(character user interface) 터미널상의 셸을 잉요한 대화식 조작에서는 프롬프트에 문자열을 입력해 명시적으로 컴퓨터에 지시를 전달.
+
+- 명령 인수 해석
+
+ARGC 와 ARGV
+
+C에서 main()함수는 두개의 인수를 가진다. 두 개의 인수는 그 프로그램이 실행되었을 때 명령줄 문자열에 관한 정보를 얻는 변수.
+main()함수가 받아오는 인수의 이름으로는 관습적으로 argc와 argv가 이용됨. argument count, argument vector를 줄여서 이름 붙인 변수.
+
+
+list0612A.c 를 실행해보면 명령줄 문자열 획득 가능.
+
+list0612B.c 를 실행.
+
+이 프로그램은 문자열 비교 함수 strcmp()를 사용. 실행한 명령이 foo라면 비교한 결과는 0이 되므로 printf("Hello, Foo!\n"); 가 실행됨. 이외에는 bar!가 실행.
+
+- 파일명에 따른 동작 전환
+
+실행 파일 이름은 foo로 지정해서 컴파일. 또한 그 파일에 다음처럼 심볼릭 링크(symbolic link)로 bar라는 이름도 붙였다. 실행 결과는??
+```
+$ gcc list0612B.c -o foo
+$ ln -s foo bar
+$ ./foo
+Hello, Foo!
+$ ./bar
+Hello, Bar!
+$
+```
+
+> 명령줄 옵션
+
 
