@@ -666,6 +666,24 @@ $
 
 - 큐를 스택으로 개조
 
-list0721B.c 작성.
+list0721B.c 작성. g_queue_pop_tail()을 g_queue_pop_head()로 대체. 이것만으로 큐가 아니라 스택의 동작을 구현할 수 있음.
+실제로 동작을 확인.
+```
+$ gcc list0721B.c -o list0721B `pkg-config glib-2.0 --cflags --libs`
+$ ./list0721B foo bar baz
+baz
+bar
+foo
+./list0721B
+$
+```
+
+- pkg-config
+
+라이브러리를 이용하려면 -I, -l이나 -L처럼 컴파일 옵션을 알맞게 지정해야 함. 하지만 포함된 파일이나 라이브러리를 일일이 지정하는 일은 꽤 성가신 작업.
+pkg-config는 그런 불편함을 해결하고자 만들어짐. pkg-config가 등장하기 전에는 개별 라이브러리에서 따로따로 명령을 제공. 
+pkg-config에 --list-all 옵션을 지정해서 실행해보면 설치된 개발 패키지 중 해당 명령에 대응하는 목록이 표시되므로 pkg-config로 무엇을 할 수 있는지 확인가능.
+
+> 연결 리스트
 
 
